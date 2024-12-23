@@ -1,7 +1,6 @@
 {% set name = "python-coreschema" %}
 {% set pypi_name = "coreschema" %}
 {% set version = "0.0.4" %}
-{% set sha256 = "9503506007d482ab0867ba14724b93c18a33b22b6d19fb419ef2d239dd4a1607" %}
 
 package:
   name: {{ name|lower }}
@@ -9,16 +8,17 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ pypi_name[0] }}/{{ pypi_name }}/{{ pypi_name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 9503506007d482ab0867ba14724b93c18a33b22b6d19fb419ef2d239dd4a1607
 
 build:
   noarch: python
   number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
+    - setuptools
     - pip
   run:
     - python >={{ python_min }}
